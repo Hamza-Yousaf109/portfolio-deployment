@@ -35,6 +35,11 @@
     cursor: none;
   }
 
+  @media (max-width: 900px) {
+    body { cursor: auto; }
+    .cursor-dot, .cursor-ring { display: none; }
+  }
+
   /* CUSTOM CURSOR */
   .cursor-dot {
     position: fixed; width: 8px; height: 8px;
@@ -1131,6 +1136,8 @@
       min-height: auto; gap: 3rem;
     }
 
+    .hero-content { max-width: 100%; }
+
     .hero-photo-wrap { 
       position: relative; right: auto; top: auto;
       transform: none; width: 100%;
@@ -1149,6 +1156,27 @@
     .projects-grid { grid-template-columns: 1fr; }
     .skills-grid { grid-template-columns: 1fr; }
     .certs-grid { grid-template-columns: 1fr; }
+    .cv-card { padding: 2rem 1.5rem; }
+    .scroll-indicator { display: none; }
+    .hero-btns { flex-direction: column; }
+    .hero-btns a { justify-content: center; }
+  }
+
+  @media (max-width: 480px) {
+    nav { padding: 1rem 1rem; }
+    .nav-logo { font-size: 1.1rem; }
+    #hero { padding: 7rem 1rem 3rem; gap: 2rem; }
+    .hero-photo-frame { width: 220px; height: 270px; }
+    .photo-tag { bottom: -12px; right: -8px; padding: 0.5rem 0.7rem; font-size: 0.65rem; }
+    .stats-row { gap: 1rem; }
+    .stat-num { font-size: 1.8rem; }
+    section { padding: 3rem 1rem; }
+    .section-title { font-size: clamp(1.6rem, 6vw, 2.5rem); }
+    .project-card { padding: 1.3rem; }
+    .contact-item { padding: 0.8rem 1rem; }
+    footer { padding: 1.5rem 1rem; }
+    .cv-card { padding: 1.5rem 1rem; }
+    .btn-primary, .btn-secondary { padding: 0.75rem 1.4rem; font-size: 0.8rem; }
   }
 
   /* TYPEWRITER */
@@ -1270,7 +1298,7 @@
 
     <div class="stats-row">
       <div class="stat-item">
-        <div class="stat-num" data-count="21">0</div>
+        <div class="stat-num" data-count="29">0</div>
         <div class="stat-label">GitHub Repos</div>
       </div>
       <div class="stat-item">
@@ -1561,15 +1589,16 @@
     <div class="project-card reveal">
       <div class="project-num">01</div>
       <div class="project-type"><i class="fab fa-docker"></i> DevOps</div>
-      <div class="project-title">Django Deployment</div>
-      <p class="project-desc">Full containerized deployment of a Django application using Docker and Docker Compose. Includes reverse proxy, environment configuration, and production-ready setup.</p>
+      <div class="project-title">Laravel Deployment</div>
+      <p class="project-desc">Deployed PHP Laravel on AWS EC2 via Jenkins CI/CD with automated build, test, and release stages. Provisioned infrastructure with Terraform; configured server using Ansible.</p>
       <div class="project-tags">
-        <span class="tag">Python</span>
-        <span class="tag">Django</span>
-        <span class="tag">Docker</span>
-        <span class="tag">Nginx</span>
+        <span class="tag">PHP</span>
+        <span class="tag">Laravel</span>
+        <span class="tag">AWS EC2</span>
+        <span class="tag">Terraform</span>
+        <span class="tag">Jenkins</span>
       </div>
-      <a href="https://github.com/Hamza-Yousaf109/django-deployment" target="_blank" class="project-link">
+      <a href="https://github.com/Hamza-Yousaf109/laravel-Deployment" target="_blank" class="project-link">
         View on GitHub <i class="fas fa-arrow-right"></i>
       </a>
     </div>
@@ -1577,75 +1606,82 @@
     <div class="project-card reveal" style="animation-delay:0.1s">
       <div class="project-num">02</div>
       <div class="project-type"><i class="fab fa-docker"></i> DevOps</div>
-      <div class="project-title">Laravel Deployment</div>
-      <p class="project-desc">Dockerized Laravel PHP application with full orchestration. Production deployment with MySQL, Redis, and queue workers containerized for scalability.</p>
+      <div class="project-title">Django Deployment</div>
+      <p class="project-desc">Containerised Python Django app with Docker & Compose; automated deployment via GitHub Actions. Configured Nginx reverse proxy and managed secrets securely.</p>
       <div class="project-tags">
-        <span class="tag">PHP</span>
-        <span class="tag">Laravel</span>
+        <span class="tag">Python</span>
+        <span class="tag">Django</span>
         <span class="tag">Docker</span>
-        <span class="tag">MySQL</span>
+        <span class="tag">Nginx</span>
+        <span class="tag">GitHub Actions</span>
       </div>
-      <a href="https://github.com/Hamza-Yousaf109/laravel-Deployment" target="_blank" class="project-link">
+      <a href="https://github.com/Hamza-Yousaf109/django-deployment" target="_blank" class="project-link">
         View on GitHub <i class="fas fa-arrow-right"></i>
       </a>
     </div>
 
     <div class="project-card reveal" style="animation-delay:0.2s">
       <div class="project-num">03</div>
-      <div class="project-type"><i class="fab fa-python"></i> Python</div>
-      <div class="project-title">Data Structure & Algorithms</div>
-      <p class="project-desc">Comprehensive Python implementations of classic data structures and algorithms — linked lists, trees, sorting, searching, dynamic programming, and more.</p>
+      <div class="project-type"><i class="fab fa-docker"></i> DevOps</div>
+      <div class="project-title">Flask App Deployment</div>
+      <p class="project-desc">Simple Flask app containerised and deployed to AWS ECS. Demonstrates a lightweight Python web service running in a fully managed container environment.</p>
       <div class="project-tags">
         <span class="tag">Python</span>
-        <span class="tag">Algorithms</span>
-        <span class="tag">DSA</span>
+        <span class="tag">Flask</span>
+        <span class="tag">AWS ECS</span>
+        <span class="tag">HTML</span>
+        <span class="tag">Docker</span>
       </div>
-      <a href="https://github.com/Hamza-Yousaf109/Data_Structure_Algo" target="_blank" class="project-link">
+      <a href="https://github.com/Hamza-Yousaf109/flask-app-deployment" target="_blank" class="project-link">
         View on GitHub <i class="fas fa-arrow-right"></i>
       </a>
     </div>
 
     <div class="project-card reveal" style="animation-delay:0.3s">
       <div class="project-num">04</div>
-      <div class="project-type"><i class="fas fa-server"></i> Full Stack</div>
-      <div class="project-title">Dairy Backend Deployment</div>
-      <p class="project-desc">JavaScript-powered backend system for dairy management. RESTful APIs, authentication, and data management for agricultural business operations.</p>
+      <div class="project-type"><i class="fab fa-node-js"></i> DevOps</div>
+      <div class="project-title">Node.js Deployment</div>
+      <p class="project-desc">A Node.js web application boilerplate deployed with a full CI/CD pipeline. Production-grade setup with automated builds, testing, and containerised delivery.</p>
       <div class="project-tags">
         <span class="tag">JavaScript</span>
         <span class="tag">Node.js</span>
-        <span class="tag">REST API</span>
+        <span class="tag">Docker</span>
+        <span class="tag">CI/CD</span>
       </div>
-      <a href="https://github.com/Hamza-Yousaf109/dairy-backend" target="_blank" class="project-link">
+      <a href="https://github.com/Hamza-Yousaf109/node-Deployment" target="_blank" class="project-link">
         View on GitHub <i class="fas fa-arrow-right"></i>
       </a>
     </div>
 
     <div class="project-card reveal" style="animation-delay:0.4s">
       <div class="project-num">05</div>
-      <div class="project-type"><i class="fas fa-paint-brush"></i> Frontend</div>
-      <div class="project-title">Dairy Frontend Deployment</div>
-      <p class="project-desc">Responsive frontend interface for the dairy management system. Interactive UI with real-time data display, forms, and dashboards for farm operations.</p>
+      <div class="project-type"><i class="fas fa-layer-group"></i> IaC</div>
+      <div class="project-title">Terraform Modules</div>
+      <p class="project-desc">Provisioned full AWS environments (EC2, VPC, Subnets, Security Groups, S3) using reusable Terraform modules. Managed remote state via S3 backend with multi-environment workspaces.</p>
       <div class="project-tags">
-        <span class="tag">JavaScript</span>
-        <span class="tag">CSS</span>
-        <span class="tag">Responsive</span>
+        <span class="tag">Terraform</span>
+        <span class="tag">HCL</span>
+        <span class="tag">AWS</span>
+        <span class="tag">IaC</span>
+        <span class="tag">S3 Backend</span>
       </div>
-      <a href="https://github.com/Hamza-Yousaf109/dairy-frontend" target="_blank" class="project-link">
+      <a href="https://github.com/Hamza-Yousaf109/terraform-Modules" target="_blank" class="project-link">
         View on GitHub <i class="fas fa-arrow-right"></i>
       </a>
     </div>
 
     <div class="project-card reveal" style="animation-delay:0.5s">
       <div class="project-num">06</div>
-      <div class="project-type"><i class="fas fa-leaf"></i> Full Stack</div>
-      <div class="project-title">Farmers Management</div>
-      <p class="project-desc">Complete management platform for farmers — crop tracking, inventory, schedules, and reporting. CSS-driven responsive interface for rural usability.</p>
+      <div class="project-type"><i class="fas fa-server"></i> Microservices</div>
+      <div class="project-title">Dairy Backend Deployment</div>
+      <p class="project-desc">Dockerised backend service for a dairy management system. Orchestrated with Docker Compose and GitHub Actions workflow for automated image builds on every push.</p>
       <div class="project-tags">
-        <span class="tag">CSS</span>
         <span class="tag">JavaScript</span>
-        <span class="tag">Management</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">Docker</span>
+        <span class="tag">GitHub Actions</span>
       </div>
-      <a href="https://github.com/Hamza-Yousaf109/farmers_management" target="_blank" class="project-link">
+      <a href="https://github.com/Hamza-Yousaf109/dairy-backend-deployment" target="_blank" class="project-link">
         View on GitHub <i class="fas fa-arrow-right"></i>
       </a>
     </div>
@@ -1655,7 +1691,7 @@
   <div style="text-align:center;margin-top:3rem;" class="reveal">
     <a href="https://github.com/Hamza-Yousaf109" target="_blank" class="btn-secondary">
       <i class="fab fa-github"></i>
-      View All 21 Repos on GitHub
+      View All 29 Repos on GitHub
     </a>
   </div>
 </section>
@@ -1879,13 +1915,10 @@
     <i class="fas fa-file-download cv-icon"></i>
     <h3>Download My CV</h3>
     <p>Get my full resume with detailed experience, education, projects, and skills.</p>
-    <a href="./Muhammad_Hamza_CV (1).pdf" download class="btn-primary" style="display:inline-flex;margin:0 auto;">
+    <a href="./Muhammad_Hamza_CV_Pro.pdf" download="Muhammad_Hamza_CV.pdf" class="btn-primary" style="display:inline-flex;margin:0 auto;">
       <i class="fas fa-download"></i>
       Download CV — PDF
     </a>
-    <p style="margin-top:1.5rem;font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--text-muted);">
-      💡 Replace <code>./Muhammad-Hamza-CV.pdf</code> with your actual CV file path
-    </p>
   </div>
 </section>
 
@@ -2038,6 +2071,8 @@ hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
 navLinks.querySelectorAll('a').forEach(a => {
   a.addEventListener('click', () => navLinks.classList.remove('open'));
 });
+
+const sections = document.querySelectorAll('section[id]');
 
 // CERTIFICATE UPLOAD
 const certData = {};
