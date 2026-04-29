@@ -1915,7 +1915,7 @@
     <i class="fas fa-file-download cv-icon"></i>
     <h3>Download My CV</h3>
     <p>Get my full resume with detailed experience, education, projects, and skills.</p>
-    <a href="Muhammad_Hamza_CV_Pro.pdf" download="Muhammad_Hamza_CV.pdf" class="btn-primary" style="display:inline-flex;margin:0 auto;" onclick="downloadCV(event)">
+    <a href="Muhammad_Hamza_CV_Pro.pdf" download="Muhammad_Hamza_CV.pdf" class="btn-primary" style="display:inline-flex;margin:0 auto;">
       <i class="fas fa-download"></i>
       Download CV — PDF
     </a>
@@ -2126,29 +2126,20 @@ window.addEventListener('scroll', () => {
 function downloadCV(event) {
   event.preventDefault();
   
-  // Use fetch for better browser compatibility
-  fetch('Muhammad_Hamza_CV_Pro.pdf')
-    .then(response => {
-      if (!response.ok) throw new Error('Network response was not ok');
-      return response.blob();
-    })
-    .then(blob => {
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'Muhammad_Hamza_CV.pdf';
-      document.body.appendChild(a);
-      a.click();
-      setTimeout(() => {
-        document.body.removeChild(a);
-        window.URL.revokeObjectURL(url);
-      }, 100);
-    })
-    .catch(error => {
-      console.error('Download error:', error);
-      // Fallback: direct navigation
-      window.location.href = 'Muhammad_Hamza_CV_Pro.pdf';
-    });
+  const link = document.createElement('a');
+  link.href = 'Muhammad_Hamza_CV_Pro.pdf';
+  link.download = 'Muhammad_Hamza_CV.pdf';
+  link.style.display = 'none';
+  
+  document.body.appendChild(link);
+  
+  // Add a small delay to ensure link is added to DOM
+  setTimeout(() => {
+    link.click();
+    setTimeout(() => {
+      document.body.removeChild(link);
+    }, 100);
+  }, 10);
 }
 
 // IMAGE ERROR HANDLER
