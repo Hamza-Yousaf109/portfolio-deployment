@@ -1314,8 +1314,8 @@
 
   <div class="hero-photo-wrap">
     <div class="hero-photo-frame">
-      <img src="hamza.png" alt="Muhammad Hamza" >
-      <div class="hero-photo-placeholder">
+      <img id="heroImage" src="hamza.png" alt="Muhammad Hamza" onerror="handleImageError()">
+      <div class="hero-photo-placeholder" id="heroPlaceholder">
         <div class="avatar-initials">MH</div>
         <div class="avatar-name">Muhammad Hamza</div>
         <div class="avatar-role">Cloud &amp; DevOps Engineer</div>
@@ -1915,7 +1915,7 @@
     <i class="fas fa-file-download cv-icon"></i>
     <h3>Download My CV</h3>
     <p>Get my full resume with detailed experience, education, projects, and skills.</p>
-    <a href="./Muhammad_Hamza_CV_Pro.pdf" download="Muhammad_Hamza_CV.pdf" class="btn-primary" style="display:inline-flex;margin:0 auto;">
+    <a href="Muhammad_Hamza_CV_Pro.pdf" download="Muhammad_Hamza_CV.pdf" class="btn-primary" style="display:inline-flex;margin:0 auto;" onclick="downloadCV(event)">
       <i class="fas fa-download"></i>
       Download CV — PDF
     </a>
@@ -2123,27 +2123,26 @@ window.addEventListener('scroll', () => {
 });
 
 // CV DOWNLOAD HANDLER
-document.querySelectorAll('a[download]').forEach(link => {
-  link.addEventListener('click', function(e) {
-    e.preventDefault();
-    const url = this.getAttribute('href');
-    const filename = this.getAttribute('download');
-    
-    fetch(url)
-      .then(response => response.blob())
-      .then(blob => {
-        const a = document.createElement('a');
-        const objUrl = URL.createObjectURL(blob);
-        a.href = objUrl;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(objUrl);
-      })
-      .catch(err => console.error('Download failed:', err));
-  });
-});
+function downloadCV(event) {
+  event.preventDefault();
+  const link = document.createElement('a');
+  link.href = 'Muhammad_Hamza_CV_Pro.pdf';
+  link.download = 'Muhammad_Hamza_CV.pdf';
+  link.style.display = 'none';
+  document.body.appendChild(link);
+  link.click();
+  setTimeout(() => document.body.removeChild(link), 100);
+}
+
+// IMAGE ERROR HANDLER
+function handleImageError() {
+  const heroImage = document.getElementById('heroImage');
+  const placeholder = document.getElementById('heroPlaceholder');
+  if (heroImage && placeholder) {
+    heroImage.style.display = 'none';
+    placeholder.style.display = 'flex';
+  }
+}
 </script>
 </body>
 </html>
