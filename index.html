@@ -2125,13 +2125,30 @@ window.addEventListener('scroll', () => {
 // CV DOWNLOAD HANDLER
 function downloadCV(event) {
   event.preventDefault();
-  const link = document.createElement('a');
-  link.href = 'Muhammad_Hamza_CV_Pro.pdf';
-  link.download = 'Muhammad_Hamza_CV.pdf';
-  link.style.display = 'none';
-  document.body.appendChild(link);
-  link.click();
-  setTimeout(() => document.body.removeChild(link), 100);
+  
+  // Use fetch for better browser compatibility
+  fetch('Muhammad_Hamza_CV_Pro.pdf')
+    .then(response => {
+      if (!response.ok) throw new Error('Network response was not ok');
+      return response.blob();
+    })
+    .then(blob => {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Muhammad_Hamza_CV.pdf';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => {
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      }, 100);
+    })
+    .catch(error => {
+      console.error('Download error:', error);
+      // Fallback: direct navigation
+      window.location.href = 'Muhammad_Hamza_CV_Pro.pdf';
+    });
 }
 
 // IMAGE ERROR HANDLER
