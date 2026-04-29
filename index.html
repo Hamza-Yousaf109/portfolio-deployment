@@ -1915,7 +1915,7 @@
     <i class="fas fa-file-download cv-icon"></i>
     <h3>Download My CV</h3>
     <p>Get my full resume with detailed experience, education, projects, and skills.</p>
-    <a href="Muhammad_Hamza_CV_Pro.pdf" download="Muhammad_Hamza_CV.pdf" class="btn-primary" style="display:inline-flex;margin:0 auto;">
+    <a href="javascript:void(0)" onclick="downloadCV()" class="btn-primary" style="display:inline-flex;margin:0 auto;cursor:pointer;">
       <i class="fas fa-download"></i>
       Download CV — PDF
     </a>
@@ -2123,23 +2123,44 @@ window.addEventListener('scroll', () => {
 });
 
 // CV DOWNLOAD HANDLER
-function downloadCV(event) {
-  event.preventDefault();
+function downloadCV() {
+  const filename = 'Muhammad_Hamza_CV_Pro.pdf';
+  const downloadName = 'Muhammad_Hamza_CV.pdf';
   
-  const link = document.createElement('a');
-  link.href = 'Muhammad_Hamza_CV_Pro.pdf';
-  link.download = 'Muhammad_Hamza_CV.pdf';
-  link.style.display = 'none';
-  
-  document.body.appendChild(link);
-  
-  // Add a small delay to ensure link is added to DOM
-  setTimeout(() => {
-    link.click();
-    setTimeout(() => {
-      document.body.removeChild(link);
-    }, 100);
-  }, 10);
+  fetch(filename)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.blob();
+    })
+    .then(blob => {
+      // Create blob URL
+      const blobUrl = window.URL.createObjectURL(blob);
+      
+      // Create temporary link and click it
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = downloadName;
+      link.style.display = 'none';
+      
+      document.body.appendChild(link);
+      link.click();
+      
+      // Cleanup
+      setTimeout(() => {
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(blobUrl);
+      }, 100);
+    })
+    .catch(error => {
+      console.error('Download failed:', error);
+      // Fallback to direct download
+      const link = document.createElement('a');
+      link.href = filename;
+      link.download = downloadName;
+      link.click();
+    });
 }
 
 // IMAGE ERROR HANDLER
